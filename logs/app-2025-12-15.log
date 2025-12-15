@@ -1,0 +1,73 @@
+[LOGGER] 2025-12-15 16:30:34.796 PM error: uncaughtException: Missing parameter name at index 1: *; visit https://git.new/pathToRegexpError for info
+TypeError: Missing parameter name at index 1: *; visit https://git.new/pathToRegexpError for info
+    at name (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\path-to-regexp\dist\index.js:96:19)
+    at parse (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\path-to-regexp\dist\index.js:113:68)
+    at pathToRegexp (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\path-to-regexp\dist\index.js:267:58)
+    at Object.match (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\path-to-regexp\dist\index.js:237:30)
+    at matcher (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\router\lib\layer.js:86:23)
+    at new Layer (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\router\lib\layer.js:93:62)
+    at Function.route (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\router\index.js:428:17)
+    at Function.route (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\express\lib\application.js:257:22)
+    at app.<computed> [as options] (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\express\lib\application.js:478:22)
+    at file:///D:/FullStack_JS/POS_Javascript/backend_pos/src/middleware/index.js:16:15
+[LOGGER] 2025-12-15 16:35:57.603 PM error: uncaughtException: Missing parameter name at index 1: *; visit https://git.new/pathToRegexpError for info
+TypeError: Missing parameter name at index 1: *; visit https://git.new/pathToRegexpError for info
+    at name (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\path-to-regexp\dist\index.js:96:19)
+    at parse (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\path-to-regexp\dist\index.js:113:68)
+    at pathToRegexp (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\path-to-regexp\dist\index.js:267:58)
+    at Object.match (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\path-to-regexp\dist\index.js:237:30)
+    at matcher (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\router\lib\layer.js:86:23)
+    at new Layer (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\router\lib\layer.js:93:62)
+    at Function.route (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\router\index.js:428:17)
+    at Function.route (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\express\lib\application.js:257:22)
+    at app.<computed> [as options] (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\express\lib\application.js:478:22)
+    at file:///D:/FullStack_JS/POS_Javascript/backend_pos/src/middleware/index.js:16:15
+[LOGGER] 2025-12-15 16:37:23.187 PM error: uncaughtException: Missing parameter name at index 1: *; visit https://git.new/pathToRegexpError for info
+TypeError: Missing parameter name at index 1: *; visit https://git.new/pathToRegexpError for info
+    at name (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\path-to-regexp\dist\index.js:96:19)
+    at parse (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\path-to-regexp\dist\index.js:113:68)
+    at pathToRegexp (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\path-to-regexp\dist\index.js:267:58)
+    at Object.match (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\path-to-regexp\dist\index.js:237:30)
+    at matcher (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\router\lib\layer.js:86:23)
+    at new Layer (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\router\lib\layer.js:93:62)
+    at Function.route (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\router\index.js:428:17)
+    at Function.route (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\express\lib\application.js:257:22)
+    at app.<computed> [as options] (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\express\lib\application.js:478:22)
+    at file:///D:/FullStack_JS/POS_Javascript/backend_pos/src/middleware/index.js:16:15
+[LOGGER] 2025-12-15 17:23:20.216 PM error: uncaughtException: userValidation.validate is not a function
+TypeError: userValidation.validate is not a function
+    at createUser (file:///D:/FullStack_JS/POS_Javascript/backend_pos/src/controllers/user.controller.js:7:43)
+    at Layer.handle [as handle_request] (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\express\lib\router\layer.js:95:5)
+    at D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\express\lib\router\index.js:175:3)
+    at router (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\express\lib\router\index.js:47:12)
+[LOGGER] 2025-12-15 17:27:07.402 PM error: uncaughtException: userValidation.validate is not a function
+TypeError: userValidation.validate is not a function
+    at createUser (file:///D:/FullStack_JS/POS_Javascript/backend_pos/src/controllers/user.controller.js:7:43)
+    at Layer.handle [as handle_request] (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\express\lib\router\layer.js:95:5)
+    at D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\express\lib\router\index.js:175:3)
+    at router (D:\FullStack_JS\POS_Javascript\backend_pos\node_modules\express\lib\router\index.js:47:12)
+[LOGGER] 2025-12-15 17:54:56.236 PM error: controllers/user.controller.js:createUser: 
+Invalid `prisma.user.create()` invocation:
+
+{
+  data: {
+    name: "Husni Mubarok",
+    password: "$2b$10$hx2igtZh4o0WI7gqBICF1uuphuuoD2ULBAe2E5KcZfSRxJNJdwAHS",
+    role: "admin",
++   userName: String
+  }
+}
+
+Argument `userName` is missing.

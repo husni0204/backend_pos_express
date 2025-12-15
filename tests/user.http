@@ -1,0 +1,14 @@
+### test request get
+GET http://localhost:3000/api HTTP/1.1
+
+### create user
+POST {{ BASE_URL }}/users HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Husni Mubarok",
+  "userName": "husni",
+  "password": "1234",
+  "confirmPassword": "1234",
+  "role": "admin"
+}

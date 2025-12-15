@@ -1,0 +1,167 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model carts {
+  id          Int     @id @default(autoincrement())
+  price       Decimal
+  productName String
+  qty         Int
+  totalPrice  Decimal
+  note        String
+  productId   Int
+  userId      Int
+  product     product @relation(fields: [productId], references: [id], map: "Carts_productId_fkey")
+  user        user    @relation(fields: [userId], references: [id], map: "Carts_userId_fkey")
+
+  @@index([productId], map: "Carts_productId_fkey")
+  @@index([userId], map: "Carts_userId_fkey")
+}
+
+model category {
+  id           Int       @id @default(autoincrement())
+  kategoryName String
+  product      product[]
+}
+
+model orderdetail {
+  id          Int     @id @default(autoincrement())
+  price       Decimal
+  productName String
+  qty         Int
+  totalPrice  Decimal
+  note        String
+  productId   Int
+  orderId     Int
+  orders      orders  @relation(fields: [orderId], references: [id], map: "Orderdetail_orderId_fkey")
+  product     product @relation(fields: [productId], references: [id], map: "Orderdetail_productId_fkey")
+
+  @@index([orderId], map: "Orderdetail_orderId_fkey")
+  @@index([productId], map: "Orderdetail_productId_fkey")
+}
+
+model orderreturn {
+  id                Int                 @id @default(autoincrement())
+  code              String
+  date              DateTime            @default(now())
+  note              String?
+  orderId           Int
+  userId            Int
+  orders            orders              @relation(fields: [orderId], references: [id], map: "Orderreturn_orderId_fkey")
+  user              user                @relation(fields: [userId], references: [id], map: "Orderreturn_userId_fkey")
+  orderreturndetail orderreturndetail[]
+
+  @@index([orderId], map: "Orderreturn_orderId_fkey")
+  @@index([userId], map: "Orderreturn_userId_fkey")
+}
+
+model orderreturndetail {
+  id          Int         @id @default(autoincrement())
+  productId   Int
+  productName String
+  price       Decimal
+  qty         Int
+  total       Decimal
+  returnId    Int
+  product     product     @relation(fields: [productId], references: [id], map: "Orderreturndetail_productId_fkey")
+  orderreturn orderreturn @relation(fields: [returnId], references: [id], map: "Orderreturndetail_returnId_fkey")
+
+  @@index([productId], map: "Orderreturndetail_productId_fkey")
+  @@index([returnId], map: "Orderreturndetail_returnId_fkey")
+}
+
+model orders {
+  id          Int           @id @default(autoincrement())
+  date        DateTime      @default(now())
+  code        String        @unique(map: "Orders_code_key")
+  total       Decimal
+  ppn         Decimal
+  grandTotal  Decimal
+  userId      Int
+  orderdetail orderdetail[]
+  orderreturn orderreturn[]
+  user        user          @relation(fields: [userId], references: [id], map: "Orders_userId_fkey")
+
+  @@index([userId], map: "Orders_userId_fkey")
+}
+
+model product {
+  id                Int                 @id @default(autoincrement())
+  code              String              @unique(map: "Product_code_key")
+  barcode           String?
+  productName       String
+  image             String
+  url               String
+  qty               Int
+  price             Decimal
+  kategoryId        Int
+  supplierId        Int
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime
+  carts             carts[]
+  orderdetail       orderdetail[]
+  orderreturndetail orderreturndetail[]
+  category          category            @relation(fields: [kategoryId], references: [id], map: "Product_kategoryId_fkey")
+  supplier          supplier            @relation(fields: [supplierId], references: [id], map: "Product_supplierId_fkey")
+  purchasedetail    purchasedetail[]
+
+  @@index([kategoryId], map: "Product_kategoryId_fkey")
+  @@index([supplierId], map: "Product_supplierId_fkey")
+}
+
+model purchase {
+  id             Int              @id @default(autoincrement())
+  code           String
+  date           DateTime
+  note           String
+  total          Decimal
+  ppn            Decimal
+  grandTotal     Decimal
+  userId         Int
+  user           user             @relation(fields: [userId], references: [id], map: "Purchase_userId_fkey")
+  purchasedetail purchasedetail[]
+
+  @@index([userId], map: "Purchase_userId_fkey")
+}
+
+model purchasedetail {
+  id          Int      @id @default(autoincrement())
+  productId   Int
+  productName String
+  price       Decimal
+  qty         Int
+  total       Decimal
+  purchaseId  Int
+  product     product  @relation(fields: [productId], references: [id], map: "Purchasedetail_productId_fkey")
+  purchase    purchase @relation(fields: [purchaseId], references: [id], map: "Purchasedetail_purchaseId_fkey")
+
+  @@index([productId], map: "Purchasedetail_productId_fkey")
+  @@index([purchaseId], map: "Purchasedetail_purchaseId_fkey")
+}
+
+model supplier {
+  id        Int       @id @default(autoincrement())
+  firstName String
+  lastName  String?
+  phone     String
+  email     String?
+  address   String
+  product   product[]
+}
+
+model user {
+  id          Int           @id @default(autoincrement())
+  userName    String        @unique(map: "User_userName_key")
+  password    String
+  name        String
+  role        String
+  carts       carts[]
+  orderreturn orderreturn[]
+  orders      orders[]
+  purchase    purchase[]
+}

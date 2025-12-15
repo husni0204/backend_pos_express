@@ -1,0 +1,33 @@
+{
+  "name": "backend_pos",
+  "version": "1.0.0",
+  "description": "backend_pos",
+  "main": "index.js",
+  "author": "husni mubarok",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^6.1.0",
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "exceljs": "^4.4.0",
+    "express": "^4.21.2",
+    "express-fileupload": "^1.5.2",
+    "joi": "^18.0.2",
+    "jsonwebtoken": "^9.0.3",
+    "pdf-creator-node": "^2.3.5",
+    "winston": "^3.19.0",
+    "winston-daily-rotate-file": "^5.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "eslint": "^9.39.2",
+    "globals": "^16.5.0",
+    "nodemon": "^3.1.11",
+    "prisma": "6.1.0"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon ./src/index.js"
+  }
+}
