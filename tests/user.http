@@ -12,3 +12,28 @@ content-type: application/json
   "confirmPassword": "1234",
   "role": "admin"
 }
+
+### user login
+POST {{ BASE_URL }}/users/login
+content-type: application/json
+{
+  "userName": "husni",
+  "password": "1234"
+}
+
+{{
+  $global.accessToken=JSON.parse(response.body).accessToken;
+  $global.refreshToken=JSON.parse(response.body).refreshToken;
+}}
+
+### update user
+PUT {{ BASE_URL }}/users/1
+content-type: application/json
+Authorization: Bearer {{$global.accessToken}}
+{
+  "name": "Husni Mubarok",
+  "userName": "husnie",
+  "password": "1234",
+  "confirmPassword": "1234",
+  "role": "admin"
+}

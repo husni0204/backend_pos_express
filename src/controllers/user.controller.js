@@ -1,5 +1,6 @@
-import { encrypt } from "../utils/bcrypt.js";
+import { compare, encrypt } from "../utils/bcrypt.js";
 import prisma from "../utils/client.js";
+import { generateAccessToken, generateRefreshToken } from "../utils/jwt.js";
 import { logger } from "../utils/winston.js";
 import { userValidation } from "../validations/user.validation.js";
 
@@ -83,3 +84,43 @@ export const updateUser = async (req, res) => {
         });
     }
 };
+
+export const loginUser = async (req, res) => {
+    try {
+        const result = await prisma.user.findUnique({
+            where: {
+                userName: req.body.userName,
+            }
+        });
+        if (result) {
+            if (compare(req.body.password, result.password)) {
+                //generate token
+                result.password = "xxxxxxxxxxxxxxx";
+                const accessToken = generateAccessToken(result);
+                const refreshToken = generateRefreshToken(result);
+                return res.status(200).json({
+                    message: "Login success",
+                    result,
+                    accessToken,
+                    refreshToken,
+                });
+            } else{
+                return res.status(500).json({
+                    message: "Password not match",
+                    result: null,
+                });
+            }
+        } else {
+            return res.status(500).json({
+                message: "User not found",
+                result: null,
+            });
+        }
+    } catch (error) {
+        logger.error("controllers/user.controller.js:loginUser - " + error.message);
+        return res.status(500).json({
+            message: error.message,
+            result: null,
+        });
+    }
+}
