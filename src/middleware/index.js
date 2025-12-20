@@ -6,12 +6,12 @@ import "../utils/winston.js";
 import fileUpload from "express-fileupload";
 
 appMiddleware.use(
-  cors({
-    origin: true,
-    credentials: true,
-    preflightContinue: false,
-    methods: ["GET,HEAD,PUT,PATCH,POST,DELETE"],
-  })
+    cors({
+        origin: true,
+        credentials: true,
+        preflightContinue: false,
+        methods: ["GET,HEAD,PUT,PATCH,POST,DELETE"],
+    }),
 );
 appMiddleware.options("*", cors());
 appMiddleware.use(express.json());
