@@ -1,6 +1,6 @@
 import { compare, encrypt } from "../utils/bcrypt.js";
 import prisma from "../utils/client.js";
-import { generateAccessToken, generateRefreshToken } from "../utils/jwt.js";
+import { generateAccessToken, generateRefreshToken, parseJwt, verifyRefreshToken } from "../utils/jwt.js";
 import { logger } from "../utils/winston.js";
 import { userValidation } from "../validations/user.validation.js";
 
@@ -123,4 +123,110 @@ export const loginUser = async (req, res) => {
             result: null,
         });
     }
-}
+};
+
+export const deleteUser = async (req, res) => {
+    try {
+        const result = await prisma.user.delete({
+            where: {
+                id: Number(req.params.id),
+            },
+        });
+        result.password = "xxxxxxxxxxxxxxx";
+        return res.status(200).json({
+            message: "success",
+            result,
+        });
+    } catch (error) {
+        logger.error("controllers/user.controller.js:deleteUser - " + error.message);
+        return res.status(500).json({
+            message: error.message,
+            result: null,
+        });
+    }
+};
+
+export const getAllUser = async (req, res) => {
+    try {
+        const result = await prisma.user.findMany();
+        return res.status(200).json({
+            message: "success",
+            result,
+        });
+    } catch (error) {
+        logger.error("controllers/user.controller.js:getAllUser - " + error.message);
+        return res.status(500).json({
+            message: error.message,
+            result: null,
+        });
+    }
+};
+
+export const getUserById = async (req, res) => {
+    try {
+        const result = await prisma.user.findUnique({
+            where: {
+                id: Number(req.params.id),
+            },
+        });
+        result.password = "xxxxxxxxxxxxxxx";
+        return res.status(200).json({
+            message: "success",
+            result,
+        });
+    } catch (error) {
+        logger.error("controllers/user.controller.js:getUserById - " + error.message);
+        return res.status(500).json({
+            message: error.message,
+            result: null,
+        });
+    }
+};
+
+export const setRefreshToken = async (req, res) => {
+    try {
+        const authHeader = req.headers["authorization"];
+        const token = authHeader && authHeader.split(" ")[1];
+        if (!token) {
+            return res.status(401).json({
+                message: "Verifikasi Token Gagal",
+                result: null,
+            });
+        }
+        const verify = verifyRefreshToken(token);
+        if (!verify) {
+            return res.status(401).json({
+                message: "Verify refresh token failed",
+                result: null,
+            });
+        }
+        let data = await parseJwt(token);
+        const user = await prisma.user.findUnique({
+            where: {
+                userName: data.userName,
+            },
+        });
+        if (!user) {
+            return res.status(401).json({
+                message: "User not found",
+                result: null,
+            });
+        } else {
+            user.password = "xxxxxxxxxxxxxxx";
+            const accessToken = generateAccessToken(user);
+            const refreshToken = generateRefreshToken(user);
+            return res.status(200).json({
+                message: "Refresh token success",
+                result: user,
+                accessToken,
+                refreshToken,
+            });
+        }
+    } catch (error) {
+        logger.error("controllers/user.controller.js:setRefreshToken - " + error.message);
+        return res.status(500).json({
+            message: error.message,
+            result: null,
+        });
+    }
+};
