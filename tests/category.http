@@ -1,0 +1,27 @@
+### getAllCategory
+GET {{ BASE_URL }}/categories
+Authorization: Bearer {{$global.accessToken}}
+
+### getCategoryById
+GET {{ BASE_URL }}/categories/3
+Authorization: Bearer {{$global.accessToken}}
+
+### createCategory
+POST {{ BASE_URL }}/categories
+content-type: application/json
+Authorization: Bearer {{$global.accessToken}}
+{
+    "kategoryName": "Untuk dihapus"
+}
+
+### updateCategory
+PUT {{ BASE_URL }}/categories/3
+content-type: application/json
+Authorization: Bearer {{$global.accessToken}}
+{
+    "kategoryName": "Untuk dihapus edit"
+}
+
+### deleteteCategory
+DELETE {{ BASE_URL }}/categories/3
+Authorization: Bearer {{$global.accessToken}}

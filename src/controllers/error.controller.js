@@ -7,7 +7,7 @@ export const autenticate = async (req, res, next) => {
     if (!token) {
         lanjut = 0;
         return res.status(401).json({
-            message: "Verify token failed",
+            message: "Access token not found",
             result: null,
         });
     }
@@ -15,7 +15,7 @@ export const autenticate = async (req, res, next) => {
     if (!user) {
         lanjut = 0;
         return res.status(401).json({
-            message: "Verify token failed",
+            message: "Make sure Verify Token is valid!",
             result: null,
         });
     }
