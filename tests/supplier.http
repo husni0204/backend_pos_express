@@ -1,0 +1,37 @@
+@lastId=1002
+@limit=4
+### get all suppliers
+GET {{ BASE_URL }}/suppliers?lastId={{ lastId }}&limit={{ limit }}
+Authorization: Bearer {{$global.accessToken}}
+
+### get supplier by id
+GET {{ BASE_URL }}/suppliers/100
+Authorization: Bearer {{$global.accessToken}}
+
+### create supplier
+POST {{ BASE_URL }}/suppliers
+Authorization: Bearer {{$global.accessToken}}
+content-type: application/json
+{
+    "firstName": "Supplier Baru",
+    "lastName": "Baru",
+    "phone": "081234567890",
+    "email": null,
+    "address": "Jl. Baru No. 1"
+}
+
+### update supplier
+PUT {{ BASE_URL }}/suppliers/1001
+Authorization: Bearer {{$global.accessToken}}
+content-type: application/json
+{
+    "firstName": "Supplier edit",
+    "lastName": "Baru",
+    "phone": "081234567890",
+    "email": "baru@mail.com",
+    "address": "Jl. Baru No. 1"
+}
+
+### delete supplier
+DELETE {{ BASE_URL }}/suppliers/1001
+Authorization: Bearer {{$global.accessToken}}
