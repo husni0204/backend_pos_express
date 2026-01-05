@@ -35,3 +35,11 @@ content-type: application/json
 ### delete supplier
 DELETE {{ BASE_URL }}/suppliers/1001
 Authorization: Bearer {{$global.accessToken}}
+
+### generate pdf supplier
+GET {{ BASE_URL }}/suppliers-pdf
+Authorization: Bearer {{$global.accessToken}}
+
+### generate excel supplier
+GET {{ BASE_URL }}/suppliers-excel
+Authorization: Bearer {{$global.accessToken}}
