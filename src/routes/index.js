@@ -1,7 +1,8 @@
 import { Router } from "express";
 import userRouter from "./user.route.js";
 import categoryRouter from "./category.route.js";
-import supplierRouter from "./supplier.router.js";
+import supplierRouter from "./supplier.route.js";
+import productRoute from "./product.route.js";
 
 
 const router = Router();
@@ -10,7 +11,12 @@ const router = Router();
 router.use("/api", userRouter);
 router.use("/api", categoryRouter);
 router.use("/api", supplierRouter);
-router.use("*", (req, res) => res.status(404).json({ message: "Not Found" }));
+router.use("/api", productRoute);
+router.use("*", (req, res) => {
+    res.status(404).json({ 
+        message: "Not Found" 
+    });
+});
 
 export default router;
  
