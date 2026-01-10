@@ -9,7 +9,7 @@ userRouter.put("/users/:id", autenticate, updateUser);
 userRouter.post("/users/login", loginUser);
 userRouter.delete("/users/:id", autenticate, deleteUser);
 userRouter.get("/users", autenticate, getAllUser);
-userRouter.get("/users/refresh", setRefreshToken)
+userRouter.get("/users/refresh", setRefreshToken);
 userRouter.get("/users/:id", autenticate, getUserById);
 
 export default userRouter;

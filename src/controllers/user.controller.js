@@ -90,7 +90,7 @@ export const loginUser = async (req, res) => {
         const result = await prisma.user.findUnique({
             where: {
                 userName: req.body.userName,
-            }
+            },
         });
         if (result) {
             if (compare(req.body.password, result.password)) {
@@ -104,7 +104,7 @@ export const loginUser = async (req, res) => {
                     accessToken,
                     refreshToken,
                 });
-            } else{
+            } else {
                 return res.status(500).json({
                     message: "Password not match",
                     result: null,

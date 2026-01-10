@@ -2,7 +2,6 @@ import { Router } from "express";
 import { autenticate } from "../controllers/error.controller.js";
 import { createSupplier, deleteSupplier, generateExcel, generatePdf, getAllSupplier, getSupplierById, updateSupplier } from "../controllers/supplier.controller.js";
 
-
 const supplierRouter = Router();
 
 supplierRouter.get("/suppliers", autenticate, getAllSupplier);

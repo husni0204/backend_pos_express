@@ -1,6 +1,15 @@
 import { Router } from "express";
 import { autenticate } from "../controllers/error.controller.js";
-import { createProduct, deleteProduct, generateExcel, generatePdf, getAllProducts, getProductByCategory, getProductById, updateProduct } from "../controllers/product.controller.js";
+import {
+    createProduct,
+    deleteProduct,
+    generateExcel,
+    generatePdf,
+    getAllProducts,
+    getProductByCategory,
+    getProductById,
+    updateProduct,
+} from "../controllers/product.controller.js";
 
 const productRoute = Router();
 

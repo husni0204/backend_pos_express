@@ -7,7 +7,7 @@ export const getAllCategory = async (req, res) => {
         const result = await prisma.category.findMany({
             orderBy: {
                 id: "asc",
-            }
+            },
         });
         return res.status(200).json({
             message: "success",
@@ -34,7 +34,6 @@ export const getCategoryById = async (req, res) => {
                 message: "Category not found",
                 result: null,
             });
-            
         }
         return res.status(200).json({
             message: "success",

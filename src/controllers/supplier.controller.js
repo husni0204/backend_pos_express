@@ -23,7 +23,7 @@ export const getAllSupplier = async (req, res) => {
                 OR address LIKE ${searchPattern}
             )
             ORDER BY id DESC
-            LIMIT ${parseInt(limit, 10)};`
+            LIMIT ${parseInt(limit, 10)};`;
         } else {
             const searchPattern = `%${search}%`;
             const lastId = parseInt(last_id, 10);
@@ -40,7 +40,7 @@ export const getAllSupplier = async (req, res) => {
             )
             AND id < ${lastId}
             ORDER BY id DESC
-            LIMIT ${limitValue};`
+            LIMIT ${limitValue};`;
         }
         return res.status(200).json({
             message: "success",
@@ -49,10 +49,8 @@ export const getAllSupplier = async (req, res) => {
             hasMore: result.length >= limit ? true : false,
         });
     } catch (error) {
-        logger.error(
-            "controleller/supplier.controller.js:getAllSupplier - " + error.message
-        );
-        return res.status(500).json({ 
+        logger.error("controleller/supplier.controller.js:getAllSupplier - " + error.message);
+        return res.status(500).json({
             message: error.message,
             result: null,
             lastId: result.length > 0 ? result[result.length - 1].id : 0,
@@ -64,20 +62,17 @@ export const getAllSupplier = async (req, res) => {
 export const getSupplierById = async (req, res) => {
     try {
         const result = await prisma.supplier.findUnique({
-            where: { id: Number(req.params.id)},
+            where: { id: Number(req.params.id) },
         });
         if (result == null) {
             return res.status(404).json({
                 message: "Supplier not found",
                 result: null,
             });
-            
         }
         return res.status(200).json({ message: "success", result });
     } catch (error) {
-        logger.error(
-            "controller/supplier.controller.js:getSupplierById - " + error.message
-        );
+        logger.error("controller/supplier.controller.js:getSupplierById - " + error.message);
         return res.status(500).json({ message: error.message, result: null });
     }
 };
@@ -98,13 +93,11 @@ export const createSupplier = async (req, res) => {
                 phone: value.phone,
                 email: value.email ? value.email : null,
                 address: value.address,
-            }
+            },
         });
         return res.status(200).json({ message: "success", result });
     } catch (error) {
-        logger.error(
-            "controller/supplier.controller.js:createSupplier - " + error.message
-        );
+        logger.error("controller/supplier.controller.js:createSupplier - " + error.message);
         return res.status(500).json({ message: error.message, result: null });
     }
 };
@@ -119,8 +112,8 @@ export const updateSupplier = async (req, res) => {
     }
     try {
         const result = await prisma.supplier.update({
-            where: { 
-                id: Number(req.params.id) 
+            where: {
+                id: Number(req.params.id),
             },
             data: {
                 firstName: value.firstName,
@@ -132,9 +125,7 @@ export const updateSupplier = async (req, res) => {
         });
         return res.status(200).json({ message: "success", result });
     } catch (error) {
-        logger.error(
-            "controller/supplier.controller.js:updateSupplier - " + error.message
-        );
+        logger.error("controller/supplier.controller.js:updateSupplier - " + error.message);
         return res.status(500).json({ message: error.message, result: null });
     }
 };
@@ -146,9 +137,7 @@ export const deleteSupplier = async (req, res) => {
         });
         return res.status(200).json({ message: "berhasil dihapus", result });
     } catch (error) {
-        logger.error(
-            "controller/supplier.controller.js:deleteSupplier - " + error.message
-        );
+        logger.error("controller/supplier.controller.js:deleteSupplier - " + error.message);
         return res.status(500).json({ message: error.message, result: null });
     }
 };
@@ -169,8 +158,7 @@ export const generatePdf = async (req, res) => {
         footer: {
             height: "28mm",
             contents: {
-                default: 
-                    '<span style="color: #444;">{{page}}</span>/<span>{{pages}}</span>', // fallback value
+                default: '<span style="color: #444;">{{page}}</span>/<span>{{pages}}</span>', // fallback value
             },
         },
     };
@@ -205,9 +193,7 @@ export const generatePdf = async (req, res) => {
             });
         }
     } catch (error) {
-        logger.error(
-            "controller/supplier.controller.js:generatePdf - " + error.message
-        );
+        logger.error("controller/supplier.controller.js:generatePdf - " + error.message);
         return res.status(500).json({ message: error.message, result: null });
     }
 };
@@ -242,10 +228,10 @@ export const generateExcel = async (req, res) => {
                     top: { style: "thin" },
                     left: { style: "thin" },
                     bottom: { style: "thin" },
-                    right: { style: "thin"},
+                    right: { style: "thin" },
                 };
             });
-        };
+        }
         worksheet.getRow(1).eachCell((cell) => {
             cell.font = { bold: true };
         });
@@ -255,9 +241,7 @@ export const generateExcel = async (req, res) => {
             result: "/excel/Supplier.xlsx",
         });
     } catch (error) {
-        logger.error(
-            "controller/supplier.controller.js:generateExcel - " + error.message
-        );
+        logger.error("controller/supplier.controller.js:generateExcel - " + error.message);
         return res.status(500).json({ message: error.message, result: null });
     }
 };

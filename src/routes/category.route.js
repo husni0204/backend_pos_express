@@ -2,7 +2,6 @@ import { Router } from "express";
 import { createCategory, deleteCategory, getAllCategory, getCategoryById, updateCategory } from "../controllers/category.controller.js";
 import { autenticate } from "../controllers/error.controller.js";
 
-
 const categoryRouter = Router();
 
 categoryRouter.get("/categories", autenticate, getAllCategory);
