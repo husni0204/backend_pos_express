@@ -2,6 +2,7 @@
 build
 coverage
 .idea
+.env
 logs
 node_modules
 prisma

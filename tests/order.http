@@ -10,11 +10,11 @@ Authorization: Bearer {{$global.accessToken}}
     "detail": [
       {
         "price": "25000",
-        "productName": "Sample Product",
+        "productName": "Sample Product Edited",
         "qty": 2,
         "totalPrice": "50000",
         "note": "pedas",
-        "productId": 2
+        "productId": 1
       }
     ]
   }
